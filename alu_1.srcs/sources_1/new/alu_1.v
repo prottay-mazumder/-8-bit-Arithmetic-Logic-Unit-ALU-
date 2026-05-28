@@ -1,23 +1,19 @@
-/*
-================================================================================
-  ADVANCED 8-BIT ALU (Arithmetic Logic Unit)
-================================================================================
-  Module Name: alu_advanced
+/*  Module Name: alu_advanced
   Description: Feature-rich 8-bit ALU supporting arithmetic, logic, shift, and
-               rotation operations with comprehensive flag outputs and overflow
+              rotation operations with comprehensive flag outputs and overflow
                detection. Suitable for microprocessor design and embedded systems.
   
   Author: Prottay Mazumder
-  Date: May 2026
+  Date: May 2025
   
   Total Operations: 16
   
   Arithmetic Operations:
-  - 0000: ADD (Addition with carry)
-  - 0001: SUB (Subtraction with borrow)
-  - 0010: INC (Increment A by 1)
-  - 0011: DEC (Decrement A by 1)
-  - 0100: MUL (Multiply A * B, lower 8 bits) [*Note: 16-bit internal]
+  0000: ADD (Addition with carry)
+  0001: SUB (Subtraction with borrow)
+   0010: INC (Increment A by 1)
+   0011: DEC (Decrement A by 1)
+   0100: MUL (Multiply A * B, lower 8 bits) [*Note: 16-bit internal]
   
   Logic Operations:
   - 0101: AND (Bitwise AND)
@@ -36,25 +32,21 @@
   - 1110: CMP (Compare A vs B, sets flags only)
   - 1111: ABS (Absolute value of A, treat as signed)
   
-================================================================================
+
 */
 
 module alu_advanced (
-    // =====================================================================
-    // INPUT PORTS
-    // =====================================================================
-    input  [7:0] A,              // First operand (8-bit)
-    input  [7:0] B,              // Second operand (8-bit)
-    input  [3:0] opcode,         // Operation code (16 operations)
-    input  carry_in,             // Carry input for extended arithmetic
+   
+    input  [7:0] A,              
+    input  [7:0] B,              
+    input  [3:0] opcode,
+    input  carry_in,            
     
-    // =====================================================================
-    // OUTPUT PORTS
-    // =====================================================================
+   
     output reg [7:0] result,     // Primary 8-bit result
     output reg [7:0] result_high, // High byte for multiply operation
     
-    // Status Flags (CPU-like flags register)
+    // Status Flags
     output carry_flag,           // Carry flag (C) - arithmetic carry/borrow
     output zero_flag,            // Zero flag (Z) - result is zero
     output sign_flag,            // Sign flag (S) - result is negative (bit 7)
@@ -65,9 +57,6 @@ module alu_advanced (
     output equal_flag            // Equal flag (for comparison)
 );
 
-    // =====================================================================
-    // INTERNAL SIGNALS
-    // =====================================================================
     
     wire [8:0] add_result;       // 9-bit for ADD (captures carry)
     wire [8:0] sub_result;       // 9-bit for SUB (captures borrow)
