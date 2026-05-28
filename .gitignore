@@ -1,0 +1,15 @@
+# Vivado generated
+.cache/
+.hw/
+.ip_user_files/
+.runs/
+.sim/
+.gen/
+
+# logs/temp
+*.jou
+*.log
+*.str
+
+# editor
+.vscode/
