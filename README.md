@@ -170,45 +170,45 @@ encrypted_val <= {encrypted_val[6:0], carry_flag};
 │                    ADVANCED 8-BIT ALU                           │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │         INDEPENDENT COMPUTATION UNITS                    │  │
-│  │  (All 16 operations computed in parallel)                │  │
-│  │                                                          │  │
-│  │  ├─ Arithmetic Pipe                                     │  │
-│  │  │  ├─ [9-bit ADD result]  [9-bit SUB result]          │  │
-│  │  │  ├─ [INC result]  [DEC result]  [16-bit MUL result] │  │
-│  │  │                                                      │  │
-│  │  ├─ Logic Pipe                                         │  │
-│  │  │  ├─ [AND]  [OR]  [XOR]  [NOT]  [NAND]              │  │
-│  │  │                                                      │  │
-│  │  ├─ Shift/Rotate Pipe                                  │  │
-│  │  │  ├─ [SHL]  [SHR]  [ROL]  [ROR]                      │  │
-│  │  │                                                      │  │
-│  │  └─ Special Pipe                                       │  │
-│  │     ├─ [CMP logic]  [ABS computation]                  │  │
-│  │                                                          │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │         INDEPENDENT COMPUTATION UNITS                    │   │ 
+│  │  (All 16 operations computed in parallel)                │   │
+│  │                                                          │   │
+│  │  ├─ Arithmetic Pipe                                      │   │
+│  │  │  ├─ [9-bit ADD result]  [9-bit SUB result]            │   │
+│  │  │  ├─ [INC result]  [DEC result]  [16-bit MUL result]   │   │
+│  │  │                                                       │   │
+│  │  ├─ Logic Pipe                                           │   │
+│  │  │  ├─ [AND]  [OR]  [XOR]  [NOT]  [NAND]                 │   │
+│  │  │                                                       │   │
+│  │  ├─ Shift/Rotate Pipe                                    │   │
+│  │  │  ├─ [SHL]  [SHR]  [ROL]  [ROR]                        │   │
+│  │  │                                                       │   │
+│  │  └─ Special Pipe                                         │   │
+│  │     ├─ [CMP logic]  [ABS computation]                    │   │
+│  │                                                          │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                          ↓                                      │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │        16:1 OPERATION MULTIPLEXER (opcode select)        │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │        16:1 OPERATION MULTIPLEXER (opcode select)        │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                          ↓                                      │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │              RESULT OUTPUT (8-bit primary)               │  │
-│  │              + RESULT_HIGH (8-bit for MUL)               │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │              RESULT OUTPUT (8-bit primary)               │   │
+│  │              + RESULT_HIGH (8-bit for MUL)               │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                                                                 │
-│  ┌──────────────────────────────────────────────────────────┐  │
-│  │           FLAG GENERATION LOGIC (Combinational)          │  │
-│  │                                                          │  │
-│  │  Carry Flag    ← Derived from result and operation type │  │
-│  │  Zero Flag     ← (result == 0) OR (CMP: A == B)         │  │
-│  │  Sign Flag     ← result[7]                              │  │
-│  │  Overflow Flag ← Signed arithmetic overflow detection   │  │
-│  │  Parity Flag   ← XOR reduction of result bits           │  │
-│  │  Equal Flag    ← (A == B)                               │  │
-│  │                                                          │  │
-│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │           FLAG GENERATION LOGIC (Combinational)          │   │
+│  │                                                          │   │
+│  │  Carry Flag    ← Derived from result and operation type  │   │
+│  │  Zero Flag     ← (result == 0) OR (CMP: A == B)          │   │
+│  │  Sign Flag     ← result[7]                               │   │
+│  │  Overflow Flag ← Signed arithmetic overflow detection    │   │
+│  │  Parity Flag   ← XOR reduction of result bits            │   │
+│  │  Equal Flag    ← (A == B)                                │   │
+│  │                                                          │   │
+│  └──────────────────────────────────────────────────────────┘   │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 
